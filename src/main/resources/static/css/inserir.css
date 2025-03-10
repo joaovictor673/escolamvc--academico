@@ -1,0 +1,51 @@
+.container-titulo{
+    display: flex;
+    justify-content: space-between;
+    align-items: center ;
+    margin-bottom: 1rem;
+
+    & svg{
+        width: 15px;
+    }
+
+    & a{
+        display: flex;
+        gap: 7px ;
+        align-items: center;
+    }
+}
+
+.formulario{
+    display: flex;
+    flex-flow: column;
+    gap: 2rem;
+
+    & button{
+        align-self: center;
+        padding: 0.5rem 10rem;
+        margin-bottom: 1rem;
+    }
+
+    & .dados{
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        border-radius: 1rem;
+    
+         
+        & .campo-titulo{
+            background-color: #ebe9e9;
+            height:5px;
+            display: flex;
+            align-items: center;
+            padding: 1.5rem;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            border-top-left-radius: 1rem;
+            border-top-right-radius: 1rem;
+        }
+    
+        & .container-campo{
+            padding: 0.5rem 2rem 2rem 2rem;
+        }
+    
+    }
+}
+

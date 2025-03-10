@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Fragmento de código que será substituído pelo conteúdo do fragmento "heads" -->
+    <div th:replace="fragments/heads :: heads"></div>
+    <title>Cadastro de Alunos</title>
+</head>
+<body>
+<div class="container">
+    <div th:replace="fragments/header :: cabecalho"></div>
+    <div class="row">
+
+        <div class="col">
+            <h1>Listagem de Alunos</h1>
+            <div class="row">
+                <div class="col-6">
+                    <form th:action="@{/aluno/buscar}" method="post" name="buscar">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" name="nome" aria-describedby="button-addon2">
+                            <button class="btn btn-primary" type="submit" id="button-addon2">Buscar <i
+                                    class="fa-solid fa-magnifying-glass"></i></button>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-6">
+                    <a th:href="@{/aluno/novo}" class="btn btn-success float-end">Cadastrar</a>
+                </div>
+            </div>
+
+
+            <div class="alert alert-success alert-dismissible fade show" th:if="${mensagem}">
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                <span th:text="${mensagem}"></span>
+            </div>
+
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Matricula</th>
+                    <th>Nome</th>
+                    <th>E-mail</th>
+                    <th>Ações</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:if="${alunos.isEmpty()}">
+                    <td colspan="2">Sem Alunos</td>
+                </tr>
+                <tr th:each="aluno : ${alunos}">
+                    <td><span th:text="${aluno.id}"> Id </span></td>
+                    <td><span th:text="${aluno.matricula}"> Matricula </span></td>
+                    <td><span th:text="${aluno.nome}"> Nome </span></td>
+                    <td><span th:text="${aluno.email}"> Email </span></td>
+                    <td>
+                        <a class="btn btn-outline-danger btn-sm"
+                           th:href="@{/aluno/excluir/{id}(id=${aluno.id})}"
+                           th:data-confirm-delete="|Você gostaria de apagar ${aluno.nome}?|"
+                           onclick="if (!confirm(this.getAttribute('data-confirm-delete'))) return false">
+                            Apagar
+                        </a>
+
+                        <a class="btn btn-outline-primary btn-sm"
+                           th:href="@{/aluno/alterar/{id}(id=${aluno.id})}">Editar
+                        </a>
+
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+    <div th:replace="fragments/footer :: footer">
+    </div>
+</div>
+</body>
+
+</html>
